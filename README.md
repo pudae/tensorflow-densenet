@@ -37,8 +37,7 @@ $ python train_image_classifier.py \
     --dataset_name=cifar10 \
     --dataset_split_name=train \
     --dataset_dir=${DATASET_DIR} \
-    --model_name=densenet121 \
-    --labels_offset=1
+    --model_name=densenet121 
 ```
 
 #### Fine-tuning a model from an existing checkpoint
@@ -53,7 +52,6 @@ $ python train_image_classifier.py \
     --dataset_split_name=train \
     --dataset_dir=${DATASET_DIR} \
     --model_name=densenet121 \
-    --labels_offset=1 \
     --checkpoint_path=${CHECKPOINT_PATH} \
     --checkpoint_exclude_scopes=global_step,densenet121/logits \
     --trainable_scopes=densenet121/logits

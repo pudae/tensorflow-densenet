@@ -1,1 +1,1 @@
-# tensorflow-densenet
+# tf-densenet

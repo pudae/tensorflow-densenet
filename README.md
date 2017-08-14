@@ -53,6 +53,6 @@ $ python train_image_classifier.py \
     --dataset_dir=${DATASET_DIR} \
     --model_name=densenet121 \
     --checkpoint_path=${CHECKPOINT_PATH} \
-    --checkpoint_exclude_scopes=global_step,densenet121/logits,densenet121/final_block,densenet121/dense_block4 \
-    --trainable_scopes=densenet121/logits,densenet121/final_block,densenet121/dense_block4
+    --checkpoint_exclude_scopes=global_step,densenet121/logits \
+    --trainable_scopes=densenet121/logits
 ```

@@ -17,43 +17,41 @@ DenseNet 161 (k=48)| 77.64| 93.79| [model](https://drive.google.com/open?id=0B_f
 ## Usage
 Follow the instruction [TensorFlow-Slim Models](https://github.com/tensorflow/models/tree/master/slim).
 
-### Step-by-step Example of training on cifar10 dataset.
-#### Downloading ans converting cifar10 dataset
+### Step-by-step Example of training on flowers dataset.
+#### Downloading ans converting flowers dataset
 
 ```
-$ DATA_DIR=/tmp/data/cifar10
+$ DATA_DIR=/tmp/data/flowers
 $ python download_and_convert_data.py \
-    --dataset_name=cifar10 \
+    --dataset_name=flowers \
     --dataset_dir="${DATA_DIR}"
 ```
 
 #### Training a model from scratch.
 
 ```
-$ DATASET_DIR=/tmp/data/cifar10
+$ DATASET_DIR=/tmp/data/flowers
 $ TRAIN_DIR=/tmp/train_logs
 $ python train_image_classifier.py \
     --train_dir=${TRAIN_DIR} \
-    --dataset_name=cifar10 \
+    --dataset_name=flowers \
     --dataset_split_name=train \
     --dataset_dir=${DATASET_DIR} \
-    --model_name=densenet121 \
-    --labels_offset=1
+    --model_name=densenet121 
 ```
 
 #### Fine-tuning a model from an existing checkpoint
 
 ```
-$ DATASET_DIR=/tmp/data/cifar10
+$ DATASET_DIR=/tmp/data/flowers
 $ TRAIN_DIR=/tmp/train_logs
 $ CHECKPOINT_PATH=/tmp/my_checkpoints/tf-densenet121.ckpt
 $ python train_image_classifier.py \
     --train_dir=${TRAIN_DIR} \
-    --dataset_name=cifar10 \
+    --dataset_name=flowers \
     --dataset_split_name=train \
     --dataset_dir=${DATASET_DIR} \
     --model_name=densenet121 \
-    --labels_offset=1 \
     --checkpoint_path=${CHECKPOINT_PATH} \
     --checkpoint_exclude_scopes=global_step,densenet121/logits \
     --trainable_scopes=densenet121/logits

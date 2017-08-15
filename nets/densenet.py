@@ -29,29 +29,10 @@ slim = tf.contrib.slim
 
 
 @slim.add_arg_scope
-def _scale_op(net, scope=None, outputs_collections=None):
-  """Custom Layer for DenseNet used for BatchNormalization
-    out = in * gamma + beta
-
-  """
-  with tf.variable_scope(scope, 'scale') as sc:
-    shape = net.get_shape().dims[-1].value
-    beta = tf.get_variable('beta', [shape])
-    gamma = tf.get_variable('gamma', [shape])
-
-    net = net * gamma + beta
-
-    net = slim.utils.collect_named_outputs(outputs_collections, sc.name, net)
-
-  return net
-
-
-@slim.add_arg_scope
 def _conv(inputs, num_filters, kernel_size, stride=1, dropout_rate=None,
           scope=None, outputs_collections=None):
   with tf.variable_scope(scope, 'xx', [inputs]) as sc:
     net = slim.batch_norm(inputs)
-    net = _scale_op(net)
     net = tf.nn.relu(net)
     net = slim.conv2d(net, num_filters, kernel_size)
 
@@ -133,7 +114,7 @@ def densenet(inputs,
     end_points_collection = sc.name + '_end_points'
     with slim.arg_scope([slim.batch_norm, slim.dropout],
                          is_training=is_training), \
-         slim.arg_scope([slim.conv2d, _scale_op, _conv, _conv_block,
+         slim.arg_scope([slim.conv2d, _conv, _conv_block,
                          _dense_block, _transition_block], 
                          outputs_collections=end_points_collection), \
          slim.arg_scope([_conv], dropout_rate=dropout_rate):
@@ -142,7 +123,6 @@ def densenet(inputs,
       # initial convolution
       net = slim.conv2d(net, num_filters, 7, stride=2, scope='conv1')
       net = slim.batch_norm(net)
-      net = _scale_op(net, 'conv1_scale')
       net = tf.nn.relu(net)
       net = slim.max_pool2d(net, 3)
 
@@ -166,7 +146,6 @@ def densenet(inputs,
       # final blocks
       with tf.variable_scope('final_block', [inputs]):
         net = slim.batch_norm(net)
-        net = _scale_op(net)
         net = tf.nn.relu(net)
         net = tf.reduce_mean(net, [1,2], name='global_avg_pool', keep_dims=True)
 

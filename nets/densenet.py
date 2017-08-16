@@ -124,7 +124,7 @@ def densenet(inputs,
       net = slim.conv2d(net, num_filters, 7, stride=2, scope='conv1')
       net = slim.batch_norm(net)
       net = tf.nn.relu(net)
-      net = slim.max_pool2d(net, 3)
+      net = slim.max_pool2d(net, 3, stride=2, padding='SAME')
 
       # blocks
       for i in range(num_dense_blocks - 1):

@@ -181,6 +181,9 @@ tf.app.flags.DEFINE_string(
     'model_name', 'densenet121', 'The name of the architecture to train.')
 
 tf.app.flags.DEFINE_string(
+    'data_format', 'NHWC', 'The structure of the Tensor. NHWC or NCHW.')
+
+tf.app.flags.DEFINE_string(
     'preprocessing_name', None, 'The name of the preprocessing to use. If left '
     'as `None`, then the model_name flag is used.')
 
@@ -409,6 +412,7 @@ def main(_):
         FLAGS.model_name,
         num_classes=(dataset.num_classes - FLAGS.labels_offset),
         weight_decay=FLAGS.weight_decay,
+        data_format=FLAGS.data_format,
         is_training=True)
 
     #####################################

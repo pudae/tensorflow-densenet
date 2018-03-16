@@ -68,6 +68,9 @@ tf.app.flags.DEFINE_string(
     'model_name', 'densenet121', 'The name of the architecture to evaluate.')
 
 tf.app.flags.DEFINE_string(
+    'data_format', 'NHWC', 'The structure of the Tensor. NHWC or NCHW.')
+
+tf.app.flags.DEFINE_string(
     'preprocessing_name', None, 'The name of the preprocessing to use. If left '
     'as `None`, then the model_name flag is used.')
 
@@ -102,6 +105,7 @@ def main(_):
     network_fn = nets_factory.get_network_fn(
         FLAGS.model_name,
         num_classes=(dataset.num_classes - FLAGS.labels_offset),
+        data_format=FLAGS.data_format,
         is_training=False)
 
     ##############################################################

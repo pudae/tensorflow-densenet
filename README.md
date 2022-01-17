@@ -10,9 +10,9 @@ The top-1/5 accuracy rates by using single center crop (crop size: 224x224, imag
 
 Network|Top-1|Top-5|Checkpoints
 :---:|:---:|:---:|:---:
-DenseNet 121 (k=32)| 74.91| 92.19| [model](https://drive.google.com/open?id=0B_fUSpodN0t0eW1sVk1aeWREaDA)
-DenseNet 169 (k=32)| 76.09| 93.14| [model](https://drive.google.com/open?id=0B_fUSpodN0t0TDB5Ti1PeTZMM2c)
-DenseNet 161 (k=48)| 77.64| 93.79| [model](https://drive.google.com/open?id=0B_fUSpodN0t0NmZvTnZZa2plaHc)
+DenseNet 121 (k=32)| 74.91| 92.19| [model](https://drive.google.com/file/d/0B_fUSpodN0t0eW1sVk1aeWREaDA/view?usp=sharing&resourcekey=0-z_rek7lZEjA4nwXzIhqDZg)
+DenseNet 169 (k=32)| 76.09| 93.14| [model](https://drive.google.com/file/d/0B_fUSpodN0t0TDB5Ti1PeTZMM2c/view?usp=sharing&resourcekey=0-EJzINUM7lBPKX-fOCCdsog)
+DenseNet 161 (k=48)| 77.64| 93.79| [model](https://drive.google.com/file/d/0B_fUSpodN0t0NmZvTnZZa2plaHc/view?usp=sharing&resourcekey=0-l8IZdDxN30rjeq4K4Mfeow)
 
 ## Usage
 Follow the instruction [TensorFlow-Slim Models](https://github.com/tensorflow/models/tree/master/slim).
